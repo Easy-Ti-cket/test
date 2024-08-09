@@ -4,6 +4,8 @@ import Animation from "../../components/Animation";
 import { useAtom } from "jotai";
 import { userNameAtom } from "../../store/atom";
 import { useNavigate } from "react-router-dom";
+import MainImage from "../../assests/images/main.png";
+
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,29 +15,24 @@ const MainContainer = styled.div`
   text-align: center;
 `;
 
-const Title = styled.h1`
-  font-size: 60px;
-  font-family: pretendardB;
-  margin-bottom: 30px;
-`;
-
-const Logo = styled.span``;
-
 const Instructions = styled.p`
   margin-top: 20px;
   font-family: pretendardB;
-  font-size: 25px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 const InputGroup = styled.div`
   display: flex;
   align-items: center;
-  margin: 60px 0 10px 0;
-  font-size: 25px;
+  margin: 20px 0;
+  font-size: 20px;
 `;
 
 const Label = styled.label`
-  margin-right: 10px;
+  margin-right: 20px;
   font-family: pretendardB;
 `;
 
@@ -45,7 +42,15 @@ const Input = styled.input`
   border: 1px solid var(--fill-color);
   border-radius: 4px;
   font-family: pretendardB;
-  font-size: 20px;
+  font-size: 18px;
+  color: var(--text-color);
+`;
+
+const SytledMainImage = styled.img`
+  width: 500px;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: cover;
 `;
 
 function Main() {
@@ -62,26 +67,24 @@ function Main() {
       alert("이름을 입력해주세요.");
       return;
     }
-    navigate("/select-level");
+    navigate("/select-mode");
   };
   return (
     <MainContainer>
-      <Title>
-        {/* 로고로 대체 */}
-        쉽게 <Logo>🎟️</Logo> 티켓
-      </Title>
-      <Instructions>아래 빈칸에 성함을 입력해 주세요.</Instructions>
+      <SytledMainImage src={MainImage} alt="main image" />
       <Instructions>
+        아래 빈칸에 성함을 입력하신 후,{" "}
         <span style={{ color: "var(--key-color)" }}>‘시작하기’</span> 버튼을
-        누르면 시작합니다.
+        클릭해 주세요.
       </Instructions>
+
       <InputGroup>
         <Label htmlFor="name">이름</Label>
         <Input
           type="text"
           onChange={handleNameInput}
           id="name"
-          placeholder="이름을 입력해 주세요"
+          placeholder="이름을 입력해 주세요."
         />
       </InputGroup>
       <Animation $focus="true">
